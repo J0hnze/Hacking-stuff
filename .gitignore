@@ -1,0 +1,8 @@
+.DS_Store
+.obsidian
+
+installers/tools/reversing/pkgs/BinaryNinja.dmg
+installers/tools/reversing/pkgs/ghidra.zip
+
+installers/tools/OSINT/sock-accounts-creator/.venv
+installers/tools/OSINT/sock-accounts-creator/sock-puppets/*
