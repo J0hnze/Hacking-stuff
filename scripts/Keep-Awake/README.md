@@ -1,5 +1,7 @@
 ## Keep-Awake.ps1`
 
+powershell -ExecutionPolicy Bypass -File .\Keep-Awake.ps1
+
 ### Overview
 
 This script keeps a laptop **awake** during long Nessus scans, installs, or data transfers by simulating a tiny bit of keyboard activity.
