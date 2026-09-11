@@ -605,6 +605,16 @@ def main():
         ),
     )
 
+    parser.add_argument(
+        "--firefox",
+        default=None,
+        help=(
+            "Path to Firefox binary "
+            "(e.g. /usr/bin/firefox, "
+            "C:\\Program Files\\Mozilla Firefox\\firefox.exe)."
+        ),
+    )
+
     args = parser.parse_args()
 
     selected_profiles = parse_profiles(
@@ -616,9 +626,16 @@ def main():
 
     print("[+] Checking dependencies...")
 
-    firefox_bin = find_binary(
-        "firefox"
-    )
+    if args.firefox:
+        firefox_bin = args.firefox
+        if not Path(firefox_bin).exists():
+            print(f"[-] Firefox binary not found: {firefox_bin}")
+            sys.exit(1)
+        print(f"[+] Using specified Firefox: {firefox_bin}")
+    else:
+        firefox_bin = find_binary(
+            "firefox"
+        )
 
     certutil_bin = None
 
