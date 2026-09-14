@@ -1408,6 +1408,11 @@ class C:
     DIM = "\033[2m"
     RESET = "\033[0m"
 
+    @classmethod
+    def disable(cls):
+        for attr in ["RED", "GREEN", "YELLOW", "BLUE", "MAGENTA", "CYAN", "WHITE", "GREY", "BOLD", "DIM", "RESET"]:
+            setattr(cls, attr, "")
+
 
 STATUS_COLOURS = {
     "Present": C.GREEN,
@@ -1533,7 +1538,11 @@ def main():
     parser.add_argument("--skip-ssl", action="store_true", help="Skip SSL/TLS checks")
     parser.add_argument("--skip-waf", action="store_true", help="Skip WAF detection")
     parser.add_argument("--skip-tech", action="store_true", help="Skip technology fingerprinting")
+    parser.add_argument("--no-color", action="store_true", help="Disable coloured output")
     args = parser.parse_args()
+
+    if args.no_color:
+        C.disable()
 
     if not args.url and not args.file:
         parser.error("Provide a URL or a file with -f")
