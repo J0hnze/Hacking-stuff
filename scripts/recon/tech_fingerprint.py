@@ -17,21 +17,16 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class C:
-    RED = "\033[91m"
-    GREEN = "\033[92m"
-    YELLOW = "\033[93m"
-    BLUE = "\033[94m"
-    CYAN = "\033[96m"
-    WHITE = "\033[97m"
-    GREY = "\033[90m"
-    BOLD = "\033[1m"
-    DIM = "\033[2m"
-    RESET = "\033[0m"
-
-    @classmethod
-    def disable(cls):
-        for attr in ["RED", "GREEN", "YELLOW", "BLUE", "CYAN", "WHITE", "GREY", "BOLD", "DIM", "RESET"]:
-            setattr(cls, attr, "")
+    RED = ""
+    GREEN = ""
+    YELLOW = ""
+    BLUE = ""
+    CYAN = ""
+    WHITE = ""
+    GREY = ""
+    BOLD = ""
+    DIM = ""
+    RESET = ""
 
 
 VERSION_PATTERN = re.compile(r"[\/@\-_v]?(\d+\.\d+(?:\.\d+)?(?:[-_.]\w+)?)")
@@ -738,11 +733,7 @@ def main():
     parser.add_argument("-o", "--output-dir", default=".", help="Output directory for results (default: current directory)")
     parser.add_argument("-t", "--timeout", type=int, default=15, help="Request timeout in seconds (default: 15)")
     parser.add_argument("-k", "--insecure", action="store_true", help="Disable SSL certificate verification")
-    parser.add_argument("--no-color", action="store_true", help="Disable coloured output")
     args = parser.parse_args()
-
-    if args.no_color:
-        C.disable()
 
     if not args.url and not args.file:
         parser.error("Provide a URL or a file with -f")
