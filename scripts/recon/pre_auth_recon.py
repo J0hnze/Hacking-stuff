@@ -1414,34 +1414,35 @@ class C:
             setattr(cls, attr, "")
 
 
-STATUS_COLOURS = {
-    "Present": C.GREEN,
-    "Missing": C.RED,
-    "Valid": C.GREEN,
-    "Invalid": C.RED,
-    "Expired": C.RED,
-    "Expiring Soon": C.YELLOW,
-    "Supported": C.GREEN,
-    "Not Supported": C.GREY,
-    "Strong": C.GREEN,
-    "Weak": C.RED,
-    "Not Accepted": C.GREEN,
-    "Vulnerable": C.RED,
-    "Detected": C.CYAN,
-    "Not Detected": C.YELLOW,
-    "Exposed": C.RED,
-    "Info": C.BLUE,
-    "Error": C.RED,
-    "Deprecated": C.RED,
-    "Acceptable": C.YELLOW,
-    "Recommended": C.GREEN,
-    "Current": C.GREEN,
-    "Outdated": C.YELLOW,
+STATUS_COLOUR_MAP = {
+    "Present": "GREEN",
+    "Missing": "RED",
+    "Valid": "GREEN",
+    "Invalid": "RED",
+    "Expired": "RED",
+    "Expiring Soon": "YELLOW",
+    "Supported": "GREEN",
+    "Not Supported": "GREY",
+    "Strong": "GREEN",
+    "Weak": "RED",
+    "Not Accepted": "GREEN",
+    "Vulnerable": "RED",
+    "Detected": "CYAN",
+    "Not Detected": "YELLOW",
+    "Exposed": "RED",
+    "Info": "BLUE",
+    "Error": "RED",
+    "Deprecated": "RED",
+    "Acceptable": "YELLOW",
+    "Recommended": "GREEN",
+    "Current": "GREEN",
+    "Outdated": "YELLOW",
 }
 
 
 def coloured_status(status):
-    colour = STATUS_COLOURS.get(status, C.WHITE)
+    attr = STATUS_COLOUR_MAP.get(status, "WHITE")
+    colour = getattr(C, attr)
     return f"{colour}{status}{C.RESET}"
 
 
